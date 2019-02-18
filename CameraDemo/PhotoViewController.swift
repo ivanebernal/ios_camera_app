@@ -9,14 +9,12 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
-  
-  static var name = String(describing: PhotoViewController.self)
-  
+    
   @IBOutlet weak var imageView: UIImageView!
   
-  var image: Photo?
+  var image: UIImage?
   
   override func viewWillAppear(_ animated: Bool) {
-    imageView.image = image?.image
+    imageView.image = image
   }
 }

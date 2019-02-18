@@ -14,9 +14,8 @@
 		231D5A30220B67AF00F1F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D5A2E220B67AF00F1F8DD /* LaunchScreen.storyboard */; };
 		231D5A38220B744C00F1F8DD /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A37220B744C00F1F8DD /* PreviewView.swift */; };
 		231D5A3A220BACE800F1F8DD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A39220BACE800F1F8DD /* PhotoViewController.swift */; };
-		231D5A3C220BE61200F1F8DD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A3B220BE61200F1F8DD /* Photo.swift */; };
 		232A316722120C5F003AF849 /* DemoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 232A316622120C5F003AF849 /* DemoClass.m */; };
-		23CEAB49220CD60200322AA6 /* Orientationextensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEAB48220CD60200322AA6 /* Orientationextensions.swift */; };
+		23CEAB49220CD60200322AA6 /* OrientationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEAB48220CD60200322AA6 /* OrientationExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +28,9 @@
 		231D5A31220B67AF00F1F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231D5A37220B744C00F1F8DD /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		231D5A39220BACE800F1F8DD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		231D5A3B220BE61200F1F8DD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		232A316522120C5E003AF849 /* CameraDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CameraDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		232A316622120C5F003AF849 /* DemoClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoClass.m; sourceTree = "<group>"; };
-		23CEAB48220CD60200322AA6 /* Orientationextensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientationextensions.swift; sourceTree = "<group>"; };
+		23CEAB48220CD60200322AA6 /* OrientationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +71,7 @@
 				231D5A31220B67AF00F1F8DD /* Info.plist */,
 				231D5A37220B744C00F1F8DD /* PreviewView.swift */,
 				231D5A39220BACE800F1F8DD /* PhotoViewController.swift */,
-				231D5A3B220BE61200F1F8DD /* Photo.swift */,
-				23CEAB48220CD60200322AA6 /* Orientationextensions.swift */,
+				23CEAB48220CD60200322AA6 /* OrientationExtensions.swift */,
 				232A316622120C5F003AF849 /* DemoClass.m */,
 				232A316522120C5E003AF849 /* CameraDemo-Bridging-Header.h */,
 			);
@@ -153,13 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23CEAB49220CD60200322AA6 /* Orientationextensions.swift in Sources */,
+				23CEAB49220CD60200322AA6 /* OrientationExtensions.swift in Sources */,
 				231D5A28220B67AD00F1F8DD /* ViewController.swift in Sources */,
 				232A316722120C5F003AF849 /* DemoClass.m in Sources */,
 				231D5A3A220BACE800F1F8DD /* PhotoViewController.swift in Sources */,
 				231D5A26220B67AD00F1F8DD /* AppDelegate.swift in Sources */,
 				231D5A38220B744C00F1F8DD /* PreviewView.swift in Sources */,
-				231D5A3C220BE61200F1F8DD /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

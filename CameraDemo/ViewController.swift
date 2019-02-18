@@ -14,14 +14,29 @@ class ViewController: UIViewController {
   @IBOutlet weak var previewView: PreviewView!
   @IBOutlet weak var flipCameraButton: UIButton!
   @IBOutlet weak var captureButton: UIButton!
+  @IBOutlet weak var permissionLabel: UILabel!
   
   lazy var frontCameraInput: AVCaptureDeviceInput? = {
-    let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-    return try? AVCaptureDeviceInput(device: device!)
+    if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
+      do {
+       return try AVCaptureDeviceInput(device: device)
+      } catch {
+        print("Unable to initialize front camera \(error.localizedDescription)")
+        return nil
+      }
+    } else {
+      return nil
+    }
   } ()
   lazy var backCameraInput: AVCaptureDeviceInput? = {
-    let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-    return try? AVCaptureDeviceInput(device: device!)
+    if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+      do {
+        return try AVCaptureDeviceInput(device: device)
+      } catch {
+        print("Unable to initialize back camera \(error.localizedDescription)")
+        return nil
+      }
+    } else { return nil }
   } ()
   let photoOutput = AVCapturePhotoOutput()
   let session = AVCaptureSession()
@@ -31,21 +46,29 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     DemoClass.printHelloWorld()
     configureViews()
-    checkCameraPermission {
-      self.prepareCameraSession()
-    }
+    checkCameraPermission(doIfGranted: prepareCameraSession, doIfError: {
+      self.notifyPermissionError(cause: $0)
+      self.enableCameraViews(enable: false)
+    })
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    session.startRunning()
+    DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
+      guard let strongSelf = self else { return }
+      strongSelf.session.startRunning()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    session.stopRunning()
+    super.viewWillDisappear(animated)
+    DispatchQueue.global(qos: .userInitiated).async{ [weak self] in
+      guard let strongSelf = self else { return }
+      strongSelf.session.stopRunning()
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let sender = sender as? Photo,
+    guard let sender = sender as? UIImage,
     let detailVC = segue.destination as? PhotoViewController else { return }
     detailVC.image = sender
   }
@@ -59,7 +82,7 @@ class ViewController: UIViewController {
     }
   }
   
-  @objc func flipCamera() {
+  @objc private func flipCamera() {
     session.beginConfiguration()
     if session.isRunning,
       let frontCamIn = frontCameraInput,
@@ -82,7 +105,7 @@ class ViewController: UIViewController {
     session.commitConfiguration()
   }
   
-  @objc func capturePhoto() {
+  @objc private func capturePhoto() {
     if let videoOrientation = previewView.videoPreviewLayer.connection?.videoOrientation,
       let connection = photoOutput.connection(with: .video){
       connection.videoOrientation = videoOrientation
@@ -103,24 +126,41 @@ class ViewController: UIViewController {
     }
   }
   
-  func checkCameraPermission(doIfGranted completion: @escaping () -> Void) {
+  private func checkCameraPermission(doIfGranted completion: @escaping () -> Void, doIfError error: @escaping (String) -> Void ) {
     switch AVCaptureDevice.authorizationStatus(for: .video) {
     case .authorized:
       completion()
     case .denied:
+      error("Camera access was denied.")
       return
     case .notDetermined:
       AVCaptureDevice.requestAccess(for: .video) { (granted) in
         if granted {
           completion()
+        } else {
+          error("Camera access was denied.")
         }
       }
     case .restricted:
+      error("Camera access is restricted.")
       return
     }
   }
   
-  func prepareCameraSession() {
+  private func notifyPermissionError(cause errorString: String) {
+    let alert = UIAlertController(title: "Camera permission error", message: errorString, preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alert.addAction(action)
+    present(alert, animated: true, completion: nil)
+  }
+  
+  private func enableCameraViews(enable: Bool) {
+    captureButton.isEnabled = enable
+    flipCameraButton.isEnabled = enable
+    permissionLabel.isHidden = enable
+  }
+  
+  private func prepareCameraSession() {
     guard let backCamInput = backCameraInput,
       session.canAddInput(backCamInput),
       session.canAddOutput(photoOutput)
@@ -131,8 +171,6 @@ class ViewController: UIViewController {
     session.addOutput(photoOutput)
     session.commitConfiguration()
     previewView.videoPreviewLayer.session = session
-    session.startRunning()
-    currentPosition = .back
   }
 }
 
@@ -146,8 +184,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
       let orientation = photo.metadata[kCGImagePropertyOrientation as String] as! NSNumber
       let uiOrientation = UIImage.Orientation(CGImagePropertyOrientation(rawValue: orientation.uint32Value)!)
       let image = UIImage(cgImage: imageRep.takeUnretainedValue(), scale: 1, orientation: uiOrientation)
-      let photo = Photo(image: image)
-      self.performSegue(withIdentifier: "PhotoDetail", sender: photo)
+      performSegue(withIdentifier: "PhotoDetail", sender: image)
     }
   }
 }

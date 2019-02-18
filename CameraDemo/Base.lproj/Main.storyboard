@@ -22,6 +22,12 @@
                                 <rect key="frame" x="0.0" y="78.5" width="375" height="534"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera permission not granted. Please check if you have access to a camera and grant permission in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zC3-fc-nbq">
+                                <rect key="frame" x="10" y="303" width="355" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="ikA-Sn-UFr">
                                 <rect key="frame" x="76.5" y="612.5" width="222" height="54.5"/>
                                 <subviews>
@@ -38,12 +44,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zC3-fc-nbq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="48F-nE-7Fu"/>
                             <constraint firstItem="2BO-00-8fa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7UX-kK-i3n"/>
                             <constraint firstItem="2BO-00-8fa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="9Xo-H0-hcH"/>
                             <constraint firstItem="ikA-Sn-UFr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FEO-aC-0M2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ikA-Sn-UFr" secondAttribute="bottom" id="KOm-Tu-jKF"/>
                             <constraint firstItem="ikA-Sn-UFr" firstAttribute="top" secondItem="2BO-00-8fa" secondAttribute="bottom" id="R3G-6x-NaM"/>
+                            <constraint firstItem="zC3-fc-nbq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-20" id="RVt-3J-smC"/>
                             <constraint firstItem="2BO-00-8fa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="nIn-CI-IW8"/>
+                            <constraint firstItem="zC3-fc-nbq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="riF-eO-Vzb"/>
                             <constraint firstItem="2BO-00-8fa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-20" id="upU-ob-zKU"/>
                             <constraint firstItem="2BO-00-8fa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vN7-UA-L7b"/>
                         </constraints>
@@ -64,6 +73,7 @@
                     <connections>
                         <outlet property="captureButton" destination="lNn-5O-YN8" id="4yU-0F-vJI"/>
                         <outlet property="flipCameraButton" destination="52q-7J-Z2X" id="O0a-Sf-A1s"/>
+                        <outlet property="permissionLabel" destination="zC3-fc-nbq" id="tQz-we-0Kw"/>
                         <outlet property="previewView" destination="2BO-00-8fa" id="Iib-K8-AEd"/>
                         <segue destination="gcZ-9B-vhl" kind="show" identifier="PhotoDetail" id="RA0-Qy-c1s"/>
                     </connections>

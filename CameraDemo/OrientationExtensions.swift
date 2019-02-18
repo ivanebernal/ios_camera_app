@@ -6,7 +6,6 @@
 //  Copyright © 2019 ivanebernal. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension CGImagePropertyOrientation {
