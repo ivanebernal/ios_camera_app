@@ -12,6 +12,11 @@
 		231D5A2B220B67AD00F1F8DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D5A29220B67AD00F1F8DD /* Main.storyboard */; };
 		231D5A2D220B67AF00F1F8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231D5A2C220B67AF00F1F8DD /* Assets.xcassets */; };
 		231D5A30220B67AF00F1F8DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D5A2E220B67AF00F1F8DD /* LaunchScreen.storyboard */; };
+		231D5A38220B744C00F1F8DD /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A37220B744C00F1F8DD /* PreviewView.swift */; };
+		231D5A3A220BACE800F1F8DD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A39220BACE800F1F8DD /* PhotoViewController.swift */; };
+		231D5A3C220BE61200F1F8DD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D5A3B220BE61200F1F8DD /* Photo.swift */; };
+		232A316722120C5F003AF849 /* DemoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 232A316622120C5F003AF849 /* DemoClass.m */; };
+		23CEAB49220CD60200322AA6 /* Orientationextensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CEAB48220CD60200322AA6 /* Orientationextensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,12 @@
 		231D5A2C220B67AF00F1F8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231D5A2F220B67AF00F1F8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		231D5A31220B67AF00F1F8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		231D5A37220B744C00F1F8DD /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		231D5A39220BACE800F1F8DD /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		231D5A3B220BE61200F1F8DD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		232A316522120C5E003AF849 /* CameraDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CameraDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		232A316622120C5F003AF849 /* DemoClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoClass.m; sourceTree = "<group>"; };
+		23CEAB48220CD60200322AA6 /* Orientationextensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientationextensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +71,12 @@
 				231D5A2C220B67AF00F1F8DD /* Assets.xcassets */,
 				231D5A2E220B67AF00F1F8DD /* LaunchScreen.storyboard */,
 				231D5A31220B67AF00F1F8DD /* Info.plist */,
+				231D5A37220B744C00F1F8DD /* PreviewView.swift */,
+				231D5A39220BACE800F1F8DD /* PhotoViewController.swift */,
+				231D5A3B220BE61200F1F8DD /* Photo.swift */,
+				23CEAB48220CD60200322AA6 /* Orientationextensions.swift */,
+				232A316622120C5F003AF849 /* DemoClass.m */,
+				232A316522120C5E003AF849 /* CameraDemo-Bridging-Header.h */,
 			);
 			path = CameraDemo;
 			sourceTree = "<group>";
@@ -96,6 +113,7 @@
 				TargetAttributes = {
 					231D5A21220B67AC00F1F8DD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -135,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23CEAB49220CD60200322AA6 /* Orientationextensions.swift in Sources */,
 				231D5A28220B67AD00F1F8DD /* ViewController.swift in Sources */,
+				232A316722120C5F003AF849 /* DemoClass.m in Sources */,
+				231D5A3A220BACE800F1F8DD /* PhotoViewController.swift in Sources */,
 				231D5A26220B67AD00F1F8DD /* AppDelegate.swift in Sources */,
+				231D5A38220B744C00F1F8DD /* PreviewView.swift in Sources */,
+				231D5A3C220BE61200F1F8DD /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +305,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = CWJ4NG9HJC;
 				INFOPLIST_FILE = CameraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -291,6 +316,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanebernal.CameraDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraDemo/CameraDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,7 +327,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = CWJ4NG9HJC;
 				INFOPLIST_FILE = CameraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -309,6 +338,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanebernal.CameraDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraDemo/CameraDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
